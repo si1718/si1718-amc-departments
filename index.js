@@ -183,6 +183,33 @@ app.put(baseURL + "/departments/:id", function (request, response) {
                         if ( updatedDepartment._id && ( typeof(updatedDepartment._id) === 'string' ) ) {
                             updatedDepartment._id = ObjectID.createFromHexString(updatedDepartment._id);
                         }
+                        updatedDepartment.idDepartment = createId(updatedDepartment.department);
+                        if(!updatedDepartment.department){
+                            updatedDepartment.department = "";
+                        }
+                        if(updatedDepartment.address){
+                            
+                            if(!updatedDepartment.address[0].school){
+                                updatedDepartment.address[0].school = "";
+                            }
+                            if(!updatedDepartment.address[0].tlf){
+                                updatedDepartment.address[0].tlf = "";
+                            }
+                            if(!updatedDepartment.address[0].web){
+                                updatedDepartment.address[0].web = "";
+                            }
+                            if(!updatedDepartment.address[0].fax){
+                                updatedDepartment.address[0].fax = "";
+                            }
+                        }else{
+                            updatedDepartment["address"]=[];
+                        }
+                        
+                        if(!updatedDepartment.researchers){
+                            updatedDepartment.researchers = [];
+                        }
+                        
+                        
                         db.updateOne({idDepartment: id}, updatedDepartment);
                         response.send(updatedDepartment); // return the updated department
                     } else {
