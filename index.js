@@ -71,7 +71,7 @@ function createId(department){
 }
 
 
-/*Get all departements*/
+/*Get all departements
 app.get(baseURL + "/departments", function (request, response) {
     db.find({}).toArray( function (err, departments) {
         if (err) {
@@ -80,10 +80,12 @@ app.get(baseURL + "/departments", function (request, response) {
             response.send(departments);
         }
     });
-});
+});*/
 
 /*Get url params*/
-app.get(baseURL + "/departments/search", function (request, response) {
+//app.get(baseURL + "/departments/search", function (request, response) {
+app.get(baseURL + "/departments", function (request, response) {
+
     
     let req_department = request.query.department;
     let req_school = request.query.school;
