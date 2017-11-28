@@ -1,0 +1,62 @@
+<h1>DepartmentNew</h1> 
+
+
+<form class="form-horizontal">
+<fieldset>
+
+
+<div class="form-group">
+  <label class="col-md-4 control-label">Department</label>  
+  <div class="col-md-4">
+  <input ng-model="newDepartment.department" id="department" name="department" type="text" placeholder="Department's name" class="form-control input-md">
+  </div>
+</div>
+
+    <div class="form-group">
+      <label class="col-md-4 control-label">School</label>  
+      <div class="col-md-4">
+      <input ng-model="newDepartment.address.school" id="school" name="school" type="text" placeholder="School's name" class="form-control input-md">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label">Phone</label>  
+      <div class="col-md-4">
+      <input ng-model="newDepartment.address.tlf" id="phone" name="phone" type="text" placeholder="Phone" class="form-control input-md">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label">Fax</label>  
+      <div class="col-md-4">
+      <input ng-model="newDepartment.address.fax" id="fax" name="fax" type="text" placeholder="Fax" class="form-control input-md">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label">Web</label>  
+      <div class="col-md-4">
+      <input ng-model="newDepartment.address.web" id="web" name="web" type="text" placeholder="Web" class="form-control input-md">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label class="col-md-4 control-label">Researcher</label>  
+      <div class="col-md-4">
+      <input ng-model="newDepartment.researcher.name" id="name" name="name" type="text" placeholder="Researcher" class="form-control input-md">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label">Category</label>  
+      <div class="col-md-4">
+      <input ng-model="newDepartment.researcher.category" id="category" name="category" type="text" placeholder="Category" class="form-control input-md">
+      </div>
+    </div>
+
+<div >
+  <label class="col-md-4 control-label" for="submit"></label>
+  <div class="col-md-4">
+    <button class="btn btn-primary" ng-click="saveDepartment()">Save</button>
+    <button class="btn btn-danger" ng-click="cancel()">Cancel</button>
+  </div>
+</div>
+
+</fieldset>
+</form>

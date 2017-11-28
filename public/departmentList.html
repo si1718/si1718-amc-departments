@@ -1,0 +1,61 @@
+<h1>DepartmentList</h1> 
+
+<div style="float:right; margin: 15px;">
+    <button class="btn btn-primary glyphicon glyphicon-plus-sign" ng-click="newDepartment()"></button>
+</div>
+
+
+<table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Department</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>Fax</th>
+                <th>Web</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr ng-repeat="department in departments">
+                <td>{{department.department}}</td>
+                <td>
+                    <table>
+                        <tr ng-repeat="address in department.address">
+                            <td>{{address.school}}</td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <table>
+                        <tr ng-repeat="address in department.address">
+                            <td>{{address.tlf}}</td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <table>
+                        <tr ng-repeat="address in department.address">
+                            <td>{{address.fax}}</td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <table>
+                        <tr ng-repeat="address in department.address">
+                            <td>{{address.web}}</td>
+                        </tr>
+                    </table>
+                </td>
+
+                <td>
+                    <button class="btn btn-primary glyphicon glyphicon-pencil" ng-click="updateDepartment(department.idDepartment)"></button>
+                    <button class="btn btn-info glyphicon glyphicon-user" ng-click=""></button>
+                    <button class="btn btn-danger glyphicon glyphicon-trash" ng-click="deleteDepartment(department.idDepartment)"></button>
+                </td>
+            </tr>
+        </tbody>
+    
+    
+    </table>

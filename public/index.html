@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="DepartmentManagerApp">
+    
+    <link rel="stylesheet" href="/styles.css" type="text/css" />
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap-theme.min.css" type="text/css" />
+    <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js" ></script>
+    <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js" ></script>
+    <script type="text/javascript" src="/bower_components/angular/angular.min.js" ></script>
+    <script type="text/javascript" src="/bower_components/angular-route/angular-route.min.js" ></script>
+    
+    <link rel="stylesheet" href="/bower_components/bootstrap-sweetalert/dist/sweetalert.css">
+    <script src="/bower_components/bootstrap-sweetalert/dist/sweetalert.min.js"></script>
+    
+
+    <script type="text/javascript" src="department-manager-app.js" ></script>
+    <script type="text/javascript" src="departmentList-ctrl.js" ></script>
+    <script type="text/javascript" src="departmentSearch-ctrl.js"></script>
+    <script type="text/javascript" src="departmentEdit-ctrl.js"></script>
+    <script type="text/javascript" src="departmentNew-ctrl.js"></script>
+
+    <body>
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand">SISIUS</a>
+            </div>
+            <ul class="nav navbar-nav activeMenu">
+              <li><a href="#!/" >Department's List</a></li>
+              <li><a href="#!/search" >Department's Search</a></li>
+            </ul>
+          </div>
+        </nav>
+        <div ng-view></div>
+        
+    </body>
+</html>

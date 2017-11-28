@@ -1,13 +1,19 @@
+"use strict";
+/* global __dirname */
+
 var express = require("express");
 var bodyParser = require("body-parser");
 var MongoClient = require("mongodb").MongoClient;
 var ObjectID = require('mongodb').ObjectID
 var helmet = require("helmet");
+var path = require('path');
+
 
 var mdbURL = "mongodb://alex:alex@ds151355.mlab.com:51355/si1718-amc-departments";
 
 
 var app = express();
+app.use(express.static(path.join(__dirname,"public")));
 
 app.use(bodyParser.json());
 app.use(helmet());
@@ -76,6 +82,53 @@ app.get(baseURL + "/departments", function (request, response) {
     });
 });
 
+/*Get url params*/
+app.get(baseURL + "/departments/search", function (request, response) {
+    
+    let req_department = request.query.department;
+    let req_school = request.query.school;
+    let req_researcher = request.query.researcher;
+    let req_category = request.query.category;
+    
+    let req_tlf = request.query.tlf;
+    let req_fax = request.query.fax;
+    let req_web = request.query.web;
+    var db_query = {"$and": []};
+
+    if(req_department){
+        db_query.$and.push({"department" : {$regex : ".*"+req_department+".*"}});
+    }
+    if(req_school){
+        db_query.$and.push({"address": {$elemMatch: {"school": {$regex: ".*"+req_school+".*"}}}});
+    }
+    if(req_tlf){
+        db_query.$and.push({"address": {$elemMatch: {"tlf": {$regex: ".*"+req_tlf+".*"}}}});
+    }
+    if(req_fax){
+        db_query.$and.push({"address": {$elemMatch: {"fax": {$regex: ".*"+req_fax+".*"}}}});
+    }
+    if(req_web){
+        db_query.$and.push({"address": {$elemMatch: {"web": {$regex: ".*"+req_web+".*"}}}});
+    }
+    if(req_researcher){
+        db_query.$and.push({"researchers": {$elemMatch: {"name": {$regex: ".*"+req_researcher+".*"}}}});
+        //db_query.$and.push({"researchers": {$elemMatch: {".*": {$regex: ".*"+req_researcher+".*"}}}});
+    }
+    if(req_category){
+        db_query.$and.push({"researchers": {$elemMatch: {"category": {$regex: ".*"+req_category+".*"}}}});
+    }
+
+
+    db.find(db_query).toArray( function (err, departments) {
+        
+        if (err) {
+            response.sendStatus(500); // internal server error
+        } else {
+            response.send(departments);
+        }
+    });
+});
+
 
 /*Get department by id*/
 
@@ -98,7 +151,10 @@ app.post(baseURL + '/departments', function(req, res) {
     var id = createId(req.body.department);  
     //var id = req.body.idDepartment;
 
-    
+    var array = [{school:req.body.address.school,tlf:req.body.address.tlf,fax:req.body.address.fax,web:req.body.address.web}];
+    req.body.address = array;
+
+
     db.findOne({ "idDepartment": id }, function(err, element) {
         if (err) {
             res.sendStatus(500); // internal server error
@@ -126,14 +182,6 @@ app.post(baseURL + "/departments/:id", function (req, res) {
     res.sendStatus(405);
 });
 
-/*Delete all departments*/
-app.delete(baseURL + '/departments', function(req, res) {
-    
-    db.remove({}, {multi: true});
-    
-    res.send();
-    
-});
 
 /*Delete single department*/
 app.delete(baseURL + "/departments/:id", function (request, response) {
@@ -155,6 +203,14 @@ app.delete(baseURL + "/departments/:id", function (request, response) {
     }
 });
 
+/*Delete all departments*/
+app.delete(baseURL + '/departments', function(req, res) {
+    
+    db.remove({}, {multi: true});
+    
+    res.send();
+    
+});
 
 
 app.put(baseURL + "/departments", function (req, res) {
