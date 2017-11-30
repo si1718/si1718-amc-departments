@@ -14,11 +14,12 @@ var mdbURL = "mongodb://alex:alex@ds151355.mlab.com:51355/si1718-amc-departments
 
 
 var app = express();
+app.use(cors());
 app.use(express.static(path.join(__dirname,"public")));
 
 app.use(bodyParser.json());
 app.use(helmet());
-app.use(cors());
+
 
 var baseURL = "/api/v1";
 var conflictId = 0;

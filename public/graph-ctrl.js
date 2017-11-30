@@ -8,9 +8,25 @@ angular.module("DepartmentManagerApp")
                 .then(function(response) {
                     $scope.data = response.data;
 
+                    var departmentsArray = [];
+                    var membersArray = [];
+                    
+                    for(let i = 0; i<=5; i++){
+                        let members = $scope.data[i].researchers.length;
+                        let department = $scope.data[i].department;
+                        
+                        
+                        
+                        departmentsArray.push(department);
+                        membersArray.push(members);
+                    }
+                    
+                    $scope.departmentsArray = departmentsArray;
+                    $scope.membersArray = membersArray;
+
 
                     
-           /* // Radialize the colors
+            // Radialize the colors
             Highcharts.setOptions({
                 colors: Highcharts.map(Highcharts.getOptions().colors, function (color) {
                     return {
@@ -28,7 +44,7 @@ angular.module("DepartmentManagerApp")
             });
 
             // Build the chart
-            Highcharts.chart('container', {
+           Highcharts.chart('container', {
                 chart: {
                     plotBackgroundColor: null,
                     plotBorderWidth: null,
@@ -36,10 +52,10 @@ angular.module("DepartmentManagerApp")
                     type: 'pie'
                 },
                 title: {
-                    text: 'Browser market shares. January, 2015 to May, 2015'
+                    text: 'Researchers in departments'
                 },
                 tooltip: {
-                    pointFormat: '{series.name}: <b>{point.percentage:.1f}</b>'
+                    pointFormat: '{series.name}: <b>{point.y}</b>'
                 },
                 plotOptions: {
                     pie: {
@@ -47,7 +63,7 @@ angular.module("DepartmentManagerApp")
                         cursor: 'pointer',
                         dataLabels: {
                             enabled: true,
-                            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                            format: '<b>{point.name}</b>: {point.y}',
                             style: {
                                 color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
                             },
@@ -58,19 +74,19 @@ angular.module("DepartmentManagerApp")
                 series: [{
                     name: 'Members',
                     data: [
-                        { name: 'Department1', y: 56.33 },
+                        { name: departmentsArray[0], y: membersArray[0]},
                         {
-                            name: 'Department2',
-                            y: 24.03,
+                            name: departmentsArray[1],
+                            y: membersArray[1],
                             sliced: true,
                             selected: true
                         },
-                        { name: 'Department3', y: 10.38 },
-                        { name: 'Department4', y: 4.77 },
-                        { name: 'Department5', y: 0.91 }
+                        { name: departmentsArray[2], y: membersArray[2] },
+                        { name: departmentsArray[3], y: membersArray[3] },
+                        { name: departmentsArray[4], y: membersArray[4] }
                     ]
                 }]
-            });*/
+            });
             
         });
             
