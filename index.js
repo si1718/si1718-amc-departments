@@ -7,6 +7,7 @@ var MongoClient = require("mongodb").MongoClient;
 var ObjectID = require('mongodb').ObjectID
 var helmet = require("helmet");
 var path = require('path');
+var cors = require('cors');
 
 
 var mdbURL = "mongodb://alex:alex@ds151355.mlab.com:51355/si1718-amc-departments";
@@ -17,10 +18,10 @@ app.use(express.static(path.join(__dirname,"public")));
 
 app.use(bodyParser.json());
 app.use(helmet());
+app.use(cors());
 
 var baseURL = "/api/v1";
 var conflictId = 0;
-//var departments = [];
 
 var db;
 
@@ -70,8 +71,8 @@ function createId(department){
     return initials;
 }
 
-
-/*Get all departements*/
+/*
+//Get all departements
 app.get(baseURL + "/departments", function (request, response) {
     db.find({}).toArray( function (err, departments) {
         if (err) {
@@ -80,10 +81,10 @@ app.get(baseURL + "/departments", function (request, response) {
             response.send(departments);
         }
     });
-});
+});*/
 
 /*Get url params*/
-app.get(baseURL + "/departments/search", function (request, response) {
+app.get(baseURL + "/departments", function (request, response) {
     
     let req_department = request.query.department;
     let req_school = request.query.school;
@@ -93,8 +94,9 @@ app.get(baseURL + "/departments/search", function (request, response) {
     let req_tlf = request.query.tlf;
     let req_fax = request.query.fax;
     let req_web = request.query.web;
+  
     var db_query = {"$and": []};
-
+         
     if(req_department){
         db_query.$and.push({"department" : {$regex : ".*"+req_department+".*"}});
     }
@@ -112,22 +114,36 @@ app.get(baseURL + "/departments/search", function (request, response) {
     }
     if(req_researcher){
         db_query.$and.push({"researchers": {$elemMatch: {"name": {$regex: ".*"+req_researcher+".*"}}}});
-        //db_query.$and.push({"researchers": {$elemMatch: {".*": {$regex: ".*"+req_researcher+".*"}}}});
     }
     if(req_category){
         db_query.$and.push({"researchers": {$elemMatch: {"category": {$regex: ".*"+req_category+".*"}}}});
     }
 
-
-    db.find(db_query).toArray( function (err, departments) {
+    if(db_query.$and.length > 0){
+        db.find(db_query).toArray( function (err, departments) {
         
-        if (err) {
-            response.sendStatus(500); // internal server error
-        } else {
-            response.send(departments);
-        }
-    });
+            if (err) {
+                response.sendStatus(500); // internal server error
+            } else {
+                response.send(departments);
+            }
+        });
+        
+    }else{
+        db.find().toArray( function (err, departments) {
+        
+            if (err) {
+                response.sendStatus(500); // internal server error
+            } else {
+                response.send(departments);
+            }
+        });
+    }
+    
+    
+    
 });
+
 
 
 /*Get department by id*/
@@ -141,6 +157,16 @@ app.get(baseURL + '/departments/:id', function(req, res) {
         res.send(department);
     });
 });
+
+
+app.get(baseURL + "/data", function(req, res) {
+    
+    var data = [34,56,3434,656,343,55,234];
+
+    
+   res.send(data);
+    
+});
     
 
 
@@ -149,7 +175,6 @@ app.get(baseURL + '/departments/:id', function(req, res) {
 app.post(baseURL + '/departments', function(req, res) {
     
     var id = createId(req.body.department);  
-    //var id = req.body.idDepartment;
 
     var array = [{school:req.body.address.school,tlf:req.body.address.tlf,fax:req.body.address.fax,web:req.body.address.web}];
     req.body.address = array;
@@ -232,9 +257,6 @@ app.put(baseURL + "/departments/:id", function (request, response) {
                 if (err) {
                     response.sendStatus(500); // internal server error
                 } else {
-                    /*var departmentsBeforeInsertion = departments.filter((department) => {
-                        return (department.id.localeCompare(id, "en", {'sensitivity': 'base'}) === 0);*/
-                   // });
                     if (department) {
                         if ( updatedDepartment._id && ( typeof(updatedDepartment._id) === 'string' ) ) {
                             updatedDepartment._id = ObjectID.createFromHexString(updatedDepartment._id);
@@ -276,6 +298,7 @@ app.put(baseURL + "/departments/:id", function (request, response) {
         }
     }
 });
+
 
 
 

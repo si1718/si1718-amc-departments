@@ -5,7 +5,7 @@ app.controller("SearchCtrl",["$scope","$http","$window","$location",function ($s
         function refresh(request){
             //$location.url(request);
             $http
-            .get("/api/v1/departments/search"+request)
+            .get("/api/v1/departments"+request)
             .then(function(response){
                 if(response.data.length == 0){
                     swal("No matches found!", "","info");

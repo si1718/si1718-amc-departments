@@ -16,6 +16,9 @@
             }).when("/createDepartment",{
                 templateUrl: "departmentNew.html",
                 controller: "NewCtrl"
+            }).when("/stadistics",{
+                templateUrl: "graph.html",
+                controller: "GraphCtrl"
             })
         
         
