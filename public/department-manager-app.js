@@ -19,6 +19,12 @@
             }).when("/stadistics",{
                 templateUrl: "graph.html",
                 controller: "GraphCtrl"
+            }).when("/dissertations",{
+                templateUrl: "dissertationsList.html",
+                controller: "dissertationsListCtrl"
+            }).when("/researchers/:idDepartment",{
+                templateUrl: "researchersList.html",
+                controller: "researchersListCtrl"
             })
         
         

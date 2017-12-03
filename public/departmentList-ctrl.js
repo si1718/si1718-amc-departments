@@ -42,6 +42,10 @@ app.controller("ListCtrl",["$scope","$http","$window",function ($scope, $http,$w
         $scope.updateDepartment = function (idDepartment){
             $window.location.href = "#!/department/" +idDepartment;
         }
+        
+        $scope.researchers = function (idDepartment){
+            $window.location.href = "#!/researchers/" +idDepartment;
+        }
 
         refresh();
 }]);

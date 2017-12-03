@@ -1,0 +1,25 @@
+<div ng-if="!dissertations" class="container">
+	<div class="row">
+		<h3>Loading data... Please wait.</h3>
+        <div class="progress progress-striped active page-progress-bar">
+            <div class="progress-bar" style="width: 100%;"></div>
+        </div>
+	</div>
+</div>
+
+<table ng-if="dissertations" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Author</th>
+            <th>Title</th>
+            <th>Year</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="dissertation in dissertations">
+            <td>{{dissertation.author}}</td>
+            <td>{{dissertation.title}}</td>
+            <td>{{dissertation.year}}</td>
+        </tr>
+    </tbody>
+</table>

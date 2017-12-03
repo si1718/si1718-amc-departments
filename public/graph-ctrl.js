@@ -11,9 +11,9 @@ angular.module("DepartmentManagerApp")
                     var departmentsArray = [];
                     var membersArray = [];
                     
-                    for(let i = 0; i<=5; i++){
-                        let members = $scope.data[i].researchers.length;
-                        let department = $scope.data[i].department;
+                    for(var i = 0; i<=5; i++){
+                        var members = $scope.data[i].researchers.length;
+                        var department = $scope.data[i].department;
                         
                         
                         
@@ -26,23 +26,6 @@ angular.module("DepartmentManagerApp")
 
 
                     
-            // Radialize the colors
-            Highcharts.setOptions({
-                colors: Highcharts.map(Highcharts.getOptions().colors, function (color) {
-                    return {
-                        radialGradient: {
-                            cx: 0.5,
-                            cy: 0.3,
-                            r: 0.7
-                        },
-                        stops: [
-                            [0, color],
-                            [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
-                        ]
-                    };
-                })
-            });
-
             // Build the chart
            Highcharts.chart('container', {
                 chart: {

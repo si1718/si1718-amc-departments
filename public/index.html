@@ -1,42 +1,86 @@
 <!DOCTYPE html>
 <html ng-app="DepartmentManagerApp">
     
-    <link rel="stylesheet" href="/styles.css" type="text/css" />
-    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap-theme.min.css" type="text/css" />
-    <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js" ></script>
-    <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js" ></script>
-    <script type="text/javascript" src="/bower_components/angular/angular.min.js" ></script>
-    <script type="text/javascript" src="/bower_components/angular-route/angular-route.min.js" ></script>
+    <head>
+        
+        <meta charset="utf-8" />
+        
+        <title>Departments</title>  
     
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <link rel="stylesheet" href="/styles.css" type="text/css" />
+        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
+        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap-theme.min.css" type="text/css" />
+        
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        
+        <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js" ></script>
+        <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js" ></script>
+        <script type="text/javascript" src="/bower_components/angular/angular.min.js" ></script>
+        <script type="text/javascript" src="/bower_components/angular-route/angular-route.min.js" ></script>
+        <script src="/bower_components/bootstrap-sweetalert/dist/sweetalert.min.js"></script>
     
-    <link rel="stylesheet" href="/bower_components/bootstrap-sweetalert/dist/sweetalert.css">
-    <script src="/bower_components/bootstrap-sweetalert/dist/sweetalert.min.js"></script>
+        <link rel="stylesheet" href="/bower_components/bootstrap-sweetalert/dist/sweetalert.css">
+        <link href="vendor/css/full-width-pics.css" rel="stylesheet">
+        <link href="vendor/css/custom-bootstrap.css" rel="stylesheet">
+        <link rel="stylesheet" href="/bower_components/angular-bootstrap/ui-bootstrap-csp.css" type="text/css" />
+        
+        <script type="text/javascript" src="/bower_components/angular-animate/angular-animate.min.js"></script>
+        <script type="text/javascript" src="/bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+        <script type="text/javascript" src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     
-
-    <script type="text/javascript" src="department-manager-app.js" ></script>
-    <script type="text/javascript" src="departmentList-ctrl.js" ></script>
-    <script type="text/javascript" src="departmentSearch-ctrl.js"></script>
-    <script type="text/javascript" src="departmentEdit-ctrl.js"></script>
-    <script type="text/javascript" src="departmentNew-ctrl.js"></script>
-    <script type="text/javascript" src="graph-ctrl.js"></script>
+        <script type="text/javascript" src="department-manager-app.js" ></script>
+        <script type="text/javascript" src="departmentList-ctrl.js" ></script>
+        <script type="text/javascript" src="dissertationsList-ctrl.js"></script>
+        <script type="text/javascript" src="departmentSearch-ctrl.js"></script>
+        <script type="text/javascript" src="departmentEdit-ctrl.js"></script>
+        <script type="text/javascript" src="departmentNew-ctrl.js"></script>
+        <script type="text/javascript" src="researchersList-ctrl.js"></script>
+        <script type="text/javascript" src="graph-ctrl.js"></script>
+        
+    </head>
 
     <body>
-        <nav class="navbar navbar-default">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <a class="navbar-brand">SISIUS</a>
+        <nav class="navbar navbar-inverse navbar-fixed-top navbar-red" role="navigation">
+            <div class="container">
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <a class="navbar-brand" href="#!/">Departments</a>
+                    <ul class="nav navbar-nav navbar navbar-right activeMenu">
+                        <li>
+                            <a href="#!/dissertations">Dissertations</a>
+                        </li>
+                        <li>
+                            <a href="#!/search">Department's Search</a>
+                        </li>
+                        <li>
+                            <a href="#!/stadistics" >Stadistics</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <ul class="nav navbar-nav activeMenu">
-              <li><a href="#!/" >Department's List</a></li>
-              <li><a href="#!/search" >Department's Search</a></li>
-              <li><a href="#!/stadistics" >Stadistics</a></li>
-            </ul>
-          </div>
         </nav>
-        <div ng-view></div>
-        
+        <header class="image-bg-fluid-height">
+            <img class="img-responsive img-center" src="vendor/images/logo_us.png" alt="">
+        </header>
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div ng-view></div>
+                        <div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p>Copyright &copy; Universidad de Sevilla 2017</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </body>
 </html>
