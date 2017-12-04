@@ -12,8 +12,10 @@ app.controller("EditCtrl",["$scope","$http","$routeParams", "$location",function
       
       delete $scope.updatedDepartment._id;
       var keywordsString = $scope.updatedDepartment.keywords;
-      var keywordsArray = keywordsString.split(",");
-      $scope.updatedDepartment.keywords = keywordsArray;
+      if(keywordsString){
+        var keywordsArray = keywordsString.split(",");
+        $scope.updatedDepartment.keywords = keywordsArray;
+      }
     
       $http
         .put("/api/v1/departments/"+$scope.idDepartment,$scope.updatedDepartment)

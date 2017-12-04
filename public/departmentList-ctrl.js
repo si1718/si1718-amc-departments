@@ -44,6 +44,7 @@ app.controller("ListCtrl",["$scope","$http","$window",function ($scope, $http,$w
         }
         
         $scope.researchers = function (idDepartment){
+            $window.localStorage.setItem("idDepartment", idDepartment);
             $window.location.href = "#!/researchers/" +idDepartment;
         }
 

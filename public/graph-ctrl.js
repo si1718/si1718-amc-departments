@@ -35,7 +35,7 @@ angular.module("DepartmentManagerApp")
                     type: 'pie'
                 },
                 title: {
-                    text: 'Researchers in departments'
+                    text: 'Researchers by department'
                 },
                 tooltip: {
                     pointFormat: '{series.name}: <b>{point.y}</b>'

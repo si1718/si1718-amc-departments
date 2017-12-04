@@ -5,9 +5,10 @@ app.controller("NewCtrl",["$scope","$http","$window", "$location",function ($sco
     $scope.saveDepartment = function (){
       
       var keywordsString = $scope.newDepartment.keywords;
-      var keywordsArray = keywordsString.split(",");
-      $scope.newDepartment.keywords = keywordsArray;
-        
+      if(keywordsString){
+        var keywordsArray = keywordsString.split(",");
+        $scope.newDepartment.keywords = keywordsArray;
+      }
       $http
         .post("/api/v1/departments",$scope.newDepartment)
         .then(

@@ -1,6 +1,6 @@
 /*global angular*/
     var app = angular.module("DepartmentManagerApp",["ngRoute"]);
-    
+
     app.config(function($routeProvider){
         
         $routeProvider
@@ -25,8 +25,10 @@
             }).when("/researchers/:idDepartment",{
                 templateUrl: "researchersList.html",
                 controller: "researchersListCtrl"
+            }).when("/editResearcher",{
+                templateUrl: "researcherEdit.html",
+                controller: "researcherEditCtrl"
             })
         
         
     });
-    console.log("App Initialized");

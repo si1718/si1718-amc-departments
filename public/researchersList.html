@@ -1,2 +1,28 @@
-<h1>Researchers</h1>
-{{researchers[0]}}
+<div ng-if="!researchers" class="container">
+	<div class="row">
+		<h3>Loading data... Please wait.</h3>
+        <div class="progress progress-striped active page-progress-bar">
+            <div class="progress-bar" style="width: 100%;"></div>
+        </div>
+	</div>
+</div>
+
+<table ng-if="researchers" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Researcher</th>
+            <th>Category</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="researcher in researchers">
+            <td>{{researcher.name}}</td>
+            <td>{{researcher.category}}</td>
+            <td>
+                <button class="btn btn-primary glyphicon glyphicon-pencil" ng-click="edit(researcher)"></button>
+                <button class="btn btn-danger glyphicon glyphicon-trash" ng-click="remove(researcher)"></button>
+            </td>
+        </tr>
+    </tbody>
+</table>

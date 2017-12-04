@@ -53,15 +53,14 @@ app.controller("SearchCtrl",["$scope","$http","$window","$location",function ($s
         if($scope.search.category){
             request += "category=" + $scope.search.category + "&";
         }
-        
-      /*        $http
-            .get("/api/v1/departments/search"+request)
-            .then(function(response){
-                $scope.departments = response.data;
-            });*/
-            
+
          refresh(request);
     }
+    
+        $scope.researchers = function (idDepartment){
+            $window.localStorage.setItem("idDepartment", idDepartment);
+            $window.location.href = "#!/researchers/" +idDepartment;
+        }
         
 
 }]);
