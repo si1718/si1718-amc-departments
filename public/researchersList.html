@@ -16,6 +16,11 @@
         </tr>
     </thead>
     <tbody>
+        <tr>
+            <td><input ng-model="addResearcher.name" id="name" name="name" type="text" placeholder="Researcher"  class="form-control input-md"></td>
+            <td><input ng-model="addResearcher.category" id="category" name="category" type="text" placeholder="Category" class="form-control input-md"></td>
+            <td><button class="btn btn-primary glyphicon glyphicon-plus-sign" ng-click="add(addResearcher)"></button></td>
+        </tr>
         <tr ng-repeat="researcher in researchers">
             <td>{{researcher.name}}</td>
             <td>{{researcher.category}}</td>

@@ -11,7 +11,6 @@ app.controller("researchersListCtrl",["$scope","$http","$window","$routeParams",
       });
     
         function refresh(){
-            
             $http
                 .get("/api/v1/departments/"+$scope.idDepartment)
                 .then(function(response){
@@ -25,6 +24,26 @@ app.controller("researchersListCtrl",["$scope","$http","$window","$routeParams",
         $window.localStorage.setItem("category", researcher.category);
         $window.location.href = "#!/editResearcher";
     }
+    
+    
+    $scope.add = function(addResearcher){
+        
+        let researcher = {name:addResearcher.name, category: addResearcher.category};
+        
+        var researchersArray = $scope.updatedDepartment.researchers;
+        
+        $scope.updatedDepartment.researchers.push(researcher);
+        $http
+              .put("/api/v1/departments/"+$scope.idDepartment,$scope.updatedDepartment)
+              .then(function(response) {
+                  swal("Done!", "Researcher added!", "success");
+                  refresh();
+            });
+        
+        
+    }
+    
+    
     
      $scope.remove = function (researcher){
         var tempArray = [];
