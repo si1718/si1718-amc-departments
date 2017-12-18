@@ -16,7 +16,6 @@ var mdbURL = "mongodb://alex:alex@ds151355.mlab.com:51355/si1718-amc-departments
 var app = express();
 app.use(cors());
 app.use(express.static(path.join(__dirname,"public")));
-
 app.use(bodyParser.json());
 app.use(helmet());
 
@@ -25,6 +24,7 @@ var baseURL = "/api/v1";
 var conflictId = 0;
 
 var db;
+var db_tags;
 
 /*///////////////////////////////////////////////////////////////////////////////*/
 
@@ -36,6 +36,7 @@ MongoClient.connect(mdbURL,{native_parser:true},(err,database) =>{
     }
     
     db = database.collection("departments");
+    db_tags = database.collection("tagsOcurrences");
 
 });
 
@@ -159,6 +160,19 @@ app.get(baseURL + '/departments/:id', function(req, res) {
     });
 });
 
+app.get(baseURL + "/tagsOcurrences", function(req, res){
+    
+
+    db_tags.find().toArray( function (err, tags) {
+        
+            if (err) {
+                res.sendStatus(500); // internal server error
+            } else {
+                res.send(tags);
+            }
+    });
+});
+    
 
 app.get(baseURL + "/data", function(req, res) {
     

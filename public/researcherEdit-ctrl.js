@@ -52,7 +52,7 @@ app.controller("researcherEditCtrl",["$scope","$http","$window", "$location",fun
             var researchersArray = $scope.updatedDepartment.researchers;
             for(var i=0; i<researchersArray.length;i++){
               if(researchersArray[i].name == $scope.editResearcher.name){
-                  researchersArray[i].url = "https://si1718-dfr-researchers.herokuapp.com/#!/researchers/"+id+"/edit";
+                  researchersArray[i].url = "https://si1718-dfr-researchers.herokuapp.com/api/v1/researchers/"+id;
                   $scope.updatedDepartment.researchers = researchersArray;
                   break;
               }
