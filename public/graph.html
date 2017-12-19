@@ -15,3 +15,10 @@
         </tr>
     </table>
 </div>
+</br>
+ <div class="form-group" style="width:30%;">
+  <label for="sel1">Select month:</label>
+  <select class="form-control" id="sel1" ng-model="selector">
+    <option ng-selected="selector == item.id" ng-click="change(item)"  ng-repeat="item in meses" ng-value="item.id">{{item.label}}</option>
+  </select>
+</div> 

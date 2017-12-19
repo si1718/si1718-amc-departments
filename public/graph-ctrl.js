@@ -1,7 +1,20 @@
 angular.module("DepartmentManagerApp")
     .controller("GraphCtrl", ["$scope", "$http", function($scope, $http) {
+        
+    $scope.mes = "December";
+    $scope.value = "12";
+        
+    $scope.change = function (item){
+        $scope.mes = item.label;
+        $scope.value = item.id;
+        refresh();
+    };
 
     function refresh() {
+        $scope.meses = [{"label":"January","id":"1"},{"label":"February","id":"2"},{"label":"March","id":"3"},{"label":"April","id":"4"},{"label":"May","id":"5"},{"label":"June","id":"6"},
+        {"label":"July","id":"7"},{"label":"August","id":"8"},{"label":"September","id":"9"},{"label":"October","id":"10"},{"label":"November","id":"11"},{"label":"December","id":"12"}];
+        
+        
         $http
             .get("/api/v1/tagsOcurrences")
             .then(function(response) {
@@ -19,7 +32,15 @@ angular.module("DepartmentManagerApp")
                 }
                     
                 for(var x in tagsArray){
-                    ocurrencesArray.push($scope.data[x][tagsArray[x]].length);
+                    var count = 0;
+                    for(var elem in $scope.data[x][tagsArray[x]]){
+                        if($scope.data[x][tagsArray[x]][elem].indexOf("/"+$scope.value+"/") != -1){
+                            count++;
+                        }
+                    }
+                    //ocurrencesArray.push($scope.data[x][tagsArray[x]].length);
+                    ocurrencesArray.push(count);
+
                 }
                 
             var chart = new Highcharts.Chart({
@@ -46,7 +67,7 @@ angular.module("DepartmentManagerApp")
                     categories: tagsArray
                 },
                 series: [{
-                    name:"December",
+                    name: $scope.mes,
                     data: ocurrencesArray
                 }]
             });
