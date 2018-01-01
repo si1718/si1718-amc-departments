@@ -11,8 +11,8 @@ angular.module("DepartmentManagerApp")
     };
 
     function refresh() {
-        $scope.meses = [{"label":"January","id":"1"},{"label":"February","id":"2"},{"label":"March","id":"3"},{"label":"April","id":"4"},{"label":"May","id":"5"},{"label":"June","id":"6"},
-        {"label":"July","id":"7"},{"label":"August","id":"8"},{"label":"September","id":"9"},{"label":"October","id":"10"},{"label":"November","id":"11"},{"label":"December","id":"12"}];
+        $scope.meses = [{"label":"January","id":"01"},{"label":"February","id":"02"},{"label":"March","id":"03"},{"label":"April","id":"04"},{"label":"May","id":"05"},{"label":"June","id":"06"},
+        {"label":"July","id":"07"},{"label":"August","id":"08"},{"label":"September","id":"09"},{"label":"October","id":"10"},{"label":"November","id":"11"},{"label":"December","id":"12"}];
         
         
         $http
