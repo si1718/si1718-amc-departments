@@ -21,4 +21,9 @@
   <select class="form-control" id="sel1" ng-model="selector">
     <option ng-selected="selector == item.id" ng-click="change(item)"  ng-repeat="item in meses" ng-value="item.id">{{item.label}}</option>
   </select>
+  </br>
+  <label for="sel2">Select day:</label>
+  <select class="form-control" id="sel2" ng-model="dayselector">
+    <option ng-click="change_day(item)" ng-repeat="item in days">{{item}}</option>
+  </select>
 </div> 

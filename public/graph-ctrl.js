@@ -3,17 +3,30 @@ angular.module("DepartmentManagerApp")
         
     $scope.mes = "December";
     $scope.value = "12";
+    $scope.day = null;    
         
     $scope.change = function (item){
         $scope.mes = item.label;
         $scope.value = item.id;
         refresh();
     };
+    
+    $scope.change_day = function (item){
+        $scope.day = item;
+        refresh();
+    };
 
     function refresh() {
         $scope.meses = [{"label":"January","id":"01"},{"label":"February","id":"02"},{"label":"March","id":"03"},{"label":"April","id":"04"},{"label":"May","id":"05"},{"label":"June","id":"06"},
         {"label":"July","id":"07"},{"label":"August","id":"08"},{"label":"September","id":"09"},{"label":"October","id":"10"},{"label":"November","id":"11"},{"label":"December","id":"12"}];
-        
+        $scope.days=[];
+        for(var i=1; i<=31;i++){
+            if(i<10){
+                $scope.days.push("0"+i);
+            }else{
+                $scope.days.push(""+i);
+            }
+        }
         
         $http
             .get("/api/v1/tagsOcurrences")
@@ -34,10 +47,19 @@ angular.module("DepartmentManagerApp")
                 for(var x in tagsArray){
                     var count = 0;
                     for(var elem in $scope.data[x][tagsArray[x]]){
-                        if($scope.data[x][tagsArray[x]][elem].indexOf("/"+$scope.value+"/") != -1){
-                            count++;
+                        if($scope.day != null){
+                            alert($scope.day+"/"+$scope.value+"/");
+                            if($scope.data[x][tagsArray[x]][elem].indexOf($scope.day+"/"+$scope.value+"/") != -1){
+                                count++;
+                            }
+                        }else{
+                            if($scope.data[x][tagsArray[x]][elem].indexOf("/"+$scope.value+"/") != -1){
+                                count++;
+                            } 
                         }
                     }
+                        
+                
                     //ocurrencesArray.push($scope.data[x][tagsArray[x]].length);
                     ocurrencesArray.push(count);
 
